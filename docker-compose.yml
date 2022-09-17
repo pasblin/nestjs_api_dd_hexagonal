@@ -1,0 +1,21 @@
+version: '3.0'
+
+services:
+  nest-api:
+    build: .
+    image: nest-api
+    container_name: nest-api
+    links:
+      - mongo
+    ports:
+      - "3000:3000"
+    tty: true
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: safebox
+      MONGO_INITDB_ROOT_PASSWORD: test
+      MONGO_INITDB_DATABASE: safebox
